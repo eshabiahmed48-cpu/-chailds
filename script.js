@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. التبديل بين تبويبات (تسجيل الدخول / حساب جديد) إن وجدت
+    // 1. التبديل بين تبويبات (إن وجدت)
     const tabs = document.querySelectorAll('.tab-btn');
     const loginForm = document.getElementById('loginForm');
     const registerFormTab = document.getElementById('registerFormTab');
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-
                 if (tab.dataset.tab === 'login') {
                     loginForm.classList.remove('hidden');
                     registerFormTab.classList.add('hidden');
@@ -40,13 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (regForm && passwordInput && confirmPasswordInput && passwordError) {
         regForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // منع إرسال النموذج (لأنه HTML فقط)
-            
+            e.preventDefault(); 
             if (passwordInput.value !== confirmPasswordInput.value) {
-                passwordError.style.display = 'block'; // إظهار رسالة الخطأ
+                passwordError.style.display = 'block';
                 confirmPasswordInput.focus();
             } else {
-                passwordError.style.display = 'none'; // إخفاء الخطأ
+                passwordError.style.display = 'none';
                 showNotification('تم إنشاء الحساب بنجاح! جاري تحويلك...', 'success');
                 setTimeout(() => {
                     window.location.href = 'login.html';
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. التعامل مع نموذج تسجيل الدخول (واجهة أمامية فقط)
+    // 4. التعامل مع نموذج تسجيل الدخول
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -77,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // دالة إظهار الإشعارات
-    function showNotification(message, type = 'success') {
+    window.showNotification = function(message, type = 'success') {
         const notif = document.createElement('div');
         notif.textContent = message;
         notif.style.cssText = `
@@ -92,3 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => notif.remove(), 3000);
     }
 });
+
+// دالة إضافة للسلة (تعمل من صفحة المنتجات)
+function addToCart() {
+    let cartCount = document.getElementById('cartCount');
+    if (cartCount) {
+        let currentCount = parseInt(cartCount.innerText) || 0;
+        cartCount.innerText = currentCount + 1;
+        // إظهار إشعار
+        if(window.showNotification) {
+            window.showNotification('تمت إضافة المنتج إلى السلة!', 'success');
+        } else {
+            alert('تمت إضافة المنتج إلى السلة!');
+        }
+    }
+}
