@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="auth-body">
-    
     <div class="auth-container">
         <div class="auth-card">
             <div class="register-header">
@@ -16,7 +15,6 @@
                 <p>انضم إلينا لتحصل على أفضل مستلزمات طفلك</p>
             </div>
 
-            <!-- عرض رسائل الخطأ (مخفي مبدئياً) -->
             <div id="generalError" class="alert alert-error" style="display: none;"></div>
 
             <form id="registerForm" action="#">
@@ -24,23 +22,20 @@
                     <label for="fullName">الاسم الكامل</label>
                     <input type="text" id="fullName" name="name" required placeholder="أدخل اسمك الكامل">
                 </div>
-
                 <div class="form-group">
                     <label for="email">البريد الإلكتروني</label>
                     <input type="email" id="email" name="email" required placeholder="example@mail.com">
                 </div>
-
                 <div class="form-group">
                     <label for="password">كلمة المرور</label>
                     <input type="password" id="password" name="password" required minlength="6" placeholder="********">
                     <span class="password-hint">يجب أن تكون 6 أحرف على الأقل</span>
                 </div>
-
                 <div class="form-group">
-                    <input type="password" id="confirmPassword" name="confirm_password" required minlength="6" placeholder="********">
-                    <span id="passwordError" style="color: #c62828; font-size: 0.85rem; display: none; margin-top: 5px;
+                    <!-- تم إصلاح هذا السطر: إغلاق وسم span بشكل صحيح -->
+                    <input type="password" id="confirmPassword" name="confirm_password" required minlength="6" placeholder="تأكيد كلمة المرور">
+                    <span id="passwordError" style="color: #c62828; font-size: 0.85rem; display: none; margin-top: 5px;">كلمات المرور غير متطابقة</span>
                 </div>
-
                 <button type="submit" class="btn btn-primary btn-block">إنشاء الحساب</button>
             </form>
 
@@ -49,7 +44,6 @@
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
